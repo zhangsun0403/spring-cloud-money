@@ -1,0 +1,32 @@
+server:
+  port: 8864
+spring:
+  application:
+    name: spring-cloud-service03
+  cloud:
+    gateway:
+      routes:
+        - id: paymen01
+          uri: http://localhost:8800
+          predicates:
+            - Path=/nb/pp/**
+        - id: paymen02
+          uri: lb://spring-cloud-service02
+          predicates:
+            - Path=/nb/**
+            - Cookie=usname,zjk
+        - id: paymen03
+          uri: https://www.baidu.com/
+          predicates:
+            - Path=/**
+      discovery:
+        locator:
+          enabled: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
+
