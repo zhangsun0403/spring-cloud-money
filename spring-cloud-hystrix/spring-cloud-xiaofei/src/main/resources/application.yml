@@ -1,0 +1,23 @@
+server:
+  port: 80
+spring:
+  application:
+    name: spring-cloud-xiaofei
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: spring-cloud-xiaofei:80
+    prefer-ip-address: true
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 500
+        read-timeout: 5000
+
+
+
